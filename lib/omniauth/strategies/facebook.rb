@@ -59,7 +59,7 @@ module OmniAuth
       def build_access_token
         if access_token = request.params["access_token"]
           ::OAuth2::AccessToken.from_hash(
-            client, 
+            client,
             {"access_token" => access_token}.update(access_token_options)
           )
         elsif signed_request_contains_access_token?
@@ -140,8 +140,7 @@ module OmniAuth
       # 2. a cookie (client-side flow via JS SDK)
       #
       def signed_request
-        @signed_request ||= raw_signed_request &&
-          parse_signed_request(raw_signed_request)
+        @signed_request ||= parse_signed_request(raw_signed_request) if raw_signed_request && raw_signed_request != ''
       end
 
       private
